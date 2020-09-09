@@ -76,12 +76,12 @@
                 </div>
               <form action="http://127.0.0.1:8000/cart/" method="post">
                     <input name="colorid" type="hidden">
-                    <input name="goodsid" type="hidden" value="4">
+                    <input name="goodsid" type="hidden" value="{{ goods.id }}">
                     <input name="sizeid" type="hidden">
                     <input name="count" type="hidden">
-                    <input name="type" value="add" type="hidden">
-                    <input type="hidden" name="csrfmiddlewaretoken" value="QYciumFpuMt1tAzw4HyUsSbgralhP9ykf6fRRkLbNhqtrzI6FElzKnFZdIenh6pT">
-                    <button class="male" onclick="goCart()">单独购买</button>
+                    <input name="flag" value="add" type="hidden">
+                    {% csrf_token %}
+                    <button class="male" onclick="goCart();">单独购买</button>
               </form>
             </div>
          <div class="detail-con-nav">

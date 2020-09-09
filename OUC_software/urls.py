@@ -24,6 +24,7 @@ from OUC_software.settings import DEBUG, MEDIA_ROOT
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^', include('goods.urls')),
+    url(r'cart/',include('cart.urls')),
 ]
 
 if DEBUG:

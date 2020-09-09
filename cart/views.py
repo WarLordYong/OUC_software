@@ -1,0 +1,36 @@
+from __future__ import unicode_literals
+
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
+
+# Create your views here.
+from django.views import View
+from .cartmanager import *
+
+
+class AddCartView(View):
+    def post(self,request):
+        #1.获取当前操作类型
+        flag = request.POST.get('flag','')
+
+        #2.判断当前操作类型
+        if flag == 'add':
+            #创建cartManager对象
+            carManagerObj = getCartManger(request)
+            #加入购物车操作
+            carManagerObj.add(**request.POST.dict())
+
+
+        return HttpResponseRedirect('/cart/queryAll/')
+
+
+class CartListView(View):
+    def get(self,request):
+        # 创建cartManager对象
+        carManagerObj = getCartManger(request)
+
+        #查询所有购物项信息
+        cartList = carManagerObj.queryAll()
+
+
+        return render(request,'cart.html',{'cartList':cartList})
